@@ -83,6 +83,7 @@ router.patch("/:id", async (req, res) => {
     };
     const options = {
       new: true, // 回傳更新"後"的資料, default: false 回傳更新"前"的資料
+      runValidators: true, // 驗證修改資料
     };
     const editPost = await Post.findByIdAndUpdate(id, postData, options);
 
