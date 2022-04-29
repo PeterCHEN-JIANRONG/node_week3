@@ -30,7 +30,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Cornell Broadbear\",\r\n    \"content\": \"at nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin\",\r\n    \"image\": \"http://dummyimage.com/197x100.png/dddddd/000000\",\r\n    \"tags\": [\r\n        \"謎因\",\r\n        \"電影\"\r\n    ],\r\n    \"type\": \"group\",\r\n    \"likes\": 1898,\r\n    \"comments\": 991\r\n}",
+					"raw": "{\r\n    \"name\": \"Cornell Broadbear\",\r\n    \"content\": \"at nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin\",\r\n    \"image\": \"http://dummyimage.com/197x100.png/dddddd/000000\",\r\n    \"tags\": [\r\n        \"謎因\",\r\n        \"電影\"\r\n    ],\r\n    \"type\": \"group\",\r\n    \"likes\": 2000,\r\n    \"comments\": 1001\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -121,7 +121,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"aaa_update\",\r\n    \"content\": \"bbb_update\",\r\n    \"image\": \"https://ccc_update.com\",\r\n    \"tags\": [\r\n        \"ddd_update\",\r\n        \"eee_update\"\r\n    ],\r\n    \"type\": \"fff_update\",\r\n    \"likes\": 201,\r\n    \"comments\": 99\r\n}\r\n",
+					"raw": "{\r\n    \"name\": \"aaa_update\",\r\n    \"content\": \"bbb_update\",\r\n    \"image\": \"https://ccc_update.com\",\r\n    \"tags\": [\r\n        \"ddd_update\",\r\n        \"eee_update\"\r\n    ],\r\n    \"type\": \"person\",\r\n    \"likes\": 888,\r\n    \"comments\": 6677\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
