@@ -1,6 +1,6 @@
 const errorHandle = (res, err) => {
   const obj = {
-    status: "false",
+    status: false,
     message: "欄位未填寫正確或無此 id",
   };
 
@@ -14,14 +14,14 @@ const errorHandle = (res, err) => {
 
 const successHandle = (res, data, message = "") => {
   const obj = {
-    status: "success",
+    status: true,
     data,
   };
   if (message !== "") {
     // 若有 message 才加進去 res
     obj.message = message;
   }
-  // res.status(200).json(obj); // .status(200) 可省略, 預設 status:200
+  // res.json(obj); // .json() -> Content-Type:application:json
   res.send(obj); // .send() 自動判斷回傳 Content-Type, String -> text/html；Array、Object -> application:json
 };
 
