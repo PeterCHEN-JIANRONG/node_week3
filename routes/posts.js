@@ -1,101 +1,20 @@
 var express = require("express");
 var router = express.Router();
-const { errorHandle, successHandle } = require("../services/httpHandle");
-const Post = require("../models/post");
+const PostsControllers = require("../controllers/posts");
 
 // 取得貼文
-router.get("/", async (req, res, next) => {
-  const posts = await Post.find();
-  successHandle(res, posts);
-});
+router.get("/", PostsControllers.getPosts);
 
 // 新增貼文
-router.post("/", async (req, res) => {
-  try {
-    const data = req.body;
-    const { name, content, image, tags, type, likes, comments } = data;
-
-    // 前端阻擋 - 欄位格式不正確
-    if (name === undefined) {
-      errorHandle(res, "姓名未填寫");
-    } else if (content === undefined) {
-      errorHandle(res, "內容未填寫");
-    } else if (tags === undefined) {
-      errorHandle(res, "標籤未填寫");
-    } else if (type === undefined) {
-      errorHandle(res, "貼文類型未填寫");
-    } else {
-      // 新增資料
-      const postData = {
-        name,
-        content,
-        image,
-        tags,
-        type,
-        likes,
-        comments,
-      };
-      const newPost = await Post.create(postData);
-      successHandle(res, newPost);
-    }
-  } catch (err) {
-    errorHandle(res, err);
-  }
-});
+router.post("/", PostsControllers.createPost);
 
 // 刪除全部貼文
-router.delete("/", async (req, res) => {
-  await Post.deleteMany({});
-  const posts = await Post.find();
-  successHandle(res, posts);
-});
+router.delete("/", PostsControllers.deleteAllPosts);
 
 // 刪除單筆貼文 by Id
-router.delete("/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const deletePost = await Post.findByIdAndDelete(id);
-    if (deletePost !== null) {
-      successHandle(res, deletePost); // 單筆刪除成功
-    } else {
-      errorHandle(res, "查無此 ID"); // 查無 id
-    }
-  } catch (err) {
-    // 預防: 網址未帶入 id
-    errorHandle(res, err);
-  }
-});
+router.delete("/:id", PostsControllers.deletePostById);
 
 // 更新貼文 by Id
-router.patch("/:id", async (req, res) => {
-  try {
-    const data = req.body;
-    const { name, content, image, tags, type, likes, comments } = data;
-    const { id } = req.params;
-    const postData = {
-      name,
-      content,
-      image,
-      tags,
-      type,
-      likes,
-      comments,
-    };
-    const options = {
-      new: true, // 回傳更新"後"的資料, default: false 回傳更新"前"的資料
-      runValidators: true, // 驗證修改資料
-    };
-    const editPost = await Post.findByIdAndUpdate(id, postData, options);
-
-    if (editPost !== null) {
-      successHandle(res, editPost);
-    } else {
-      errorHandle(res, "查無此 ID"); // 查無 id
-    }
-  } catch (err) {
-    // 預防: JSON 解析失敗、網址未帶入 id
-    errorHandle(res, err);
-  }
-});
+router.patch("/:id", PostsControllers.updatePostById);
 
 module.exports = router;
