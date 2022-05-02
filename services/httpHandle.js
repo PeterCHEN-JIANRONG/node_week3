@@ -21,7 +21,8 @@ const successHandle = (res, data, message = "") => {
     // 若有 message 才加進去 res
     obj.message = message;
   }
-  res.status(200).json(obj);
+  // res.status(200).json(obj); // .status(200) 可省略, 預設 status:200
+  res.send(obj); // .send() 自動判斷回傳 Content-Type, String -> text/html；Array、Object -> application:json
 };
 
 module.exports = {
